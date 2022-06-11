@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SerializationAndDeserialization
 {
@@ -13,21 +14,16 @@ namespace SerializationAndDeserialization
     {
         public void Serializedata()
         {
-            BlogSites bsObj = new BlogSites()
-            {
-                Name = "Sunny",
-                Desc = "Welcome To The JSON Program"
-            };
-            string JsonData = JsonConvert.SerializeObject(bsObj);
-            Console.WriteLine(JsonData);
+            XmlSerializer ser = new XmlSerializer(typeof(OrderForm));
+            FileStream fileStream = new FileStream(@"D:\dotnet\Serialization\Serialization-Deserialization\SerialzationAndDeserialization\Example.txt", FileMode.Create);
+            OrderForm orderForm = new OrderForm();
+            DateTime dt = new DateTime(2015, 12, 31);
+            orderForm.OrderDate = dt;
+            ser.Serialize(fileStream, orderForm);
         }
     }
-    [DataContract]
-    public class BlogSites
+    public class OrderForm
     {
-        [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public string Desc { get; set; }
+        public DateTime OrderDate;
     }
 }

@@ -13,13 +13,13 @@ namespace SerializationAndDeserialization
     {
         public void Deserialize()
         {
-            string JsonData = @"{'Name':'mohan','Desc':'Welcome the program'}";
-            BlogSite bsObj = JsonConvert.DeserializeObject<BlogSite>(JsonData);
-            Console.WriteLine(bsObj);
+            string jsonData = @"{'Name':'Sunny','Desc':'Welcome To The program'}";
+            Blog bsObj = JsonConvert.DeserializeObject<Blog>(jsonData);
+            Console.WriteLine(bsObj.Name);
         }
     }
     [DataContract]
-    public class BlogSite
+    public class Blog
     {
         [DataMember]
         public string Name { get; set; }
