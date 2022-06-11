@@ -13,19 +13,18 @@ namespace SerializationAndDeserialization
     {
         public void Deserialize()
         {
-            FileStream fileStream = new FileStream(@"E:\BridgeLabzProject\Serialization&Deserialization\Serialization-Deserialization\SerializationAndDeserialization\Example.txt", FileMode.Open);
-
-            BinaryFormatter formatter = new BinaryFormatter();
-            Demo deserialization = (Demo)formatter.Deserialize(fileStream);
-            Console.WriteLine($"AppName:-{deserialization.AppName}--AppId:-{deserialization.AppId}");
+            string JsonData = @"{'Name':'mohan','Desc':'Welcome the program'}";
+            BlogSite bsObj = JsonConvert.DeserializeObject<BlogSite>(JsonData);
+            Console.WriteLine(bsObj);
         }
     }
-    [Serializable]
-    public class Demos
+    [DataContract]
+    public class BlogSite
     {
-        public string AppName { get; set; } = "Binary Deserialize";
-        public int AppId { get; set; } = 1001;
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Desc { get; set; }
     }
-
 }
 

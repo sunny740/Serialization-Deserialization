@@ -11,25 +11,23 @@ namespace SerializationAndDeserialization
 {
     public class Serialization
     {
-        const string path = @"E:\BridgeLabzProject\Serialization&Deserialization\Serialization-Deserialization\SerializationAndDeserialization\Example.txt";
         public void Serializedata()
         {
-            Demo data = new Demo();
-            FileStream stream = new FileStream(path, FileMode.Create);
-            BinaryFormatter bn = new BinaryFormatter();
-
-            bn.Serialize(stream, data);
-            stream.Close();
-            Console.WriteLine("Convert object to binary");
-            string text = File.ReadAllText(path);
-            Console.WriteLine(text);
-
+            BlogSites bsObj = new BlogSites()
+            {
+                Name = "Sunny",
+                Desc = "Welcome To The JSON Program"
+            };
+            string JsonData = JsonConvert.SerializeObject(bsObj);
+            Console.WriteLine(JsonData);
         }
     }
-    [Serializable]
-    public class Demo
+    [DataContract]
+    public class BlogSites
     {
-        public string AppName { get; set; } = "Binary Serialize";
-        public int AppId { get; set; } = 1001;
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Desc { get; set; }
     }
 }

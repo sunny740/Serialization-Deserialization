@@ -5,14 +5,14 @@ class Program
 {
     public static void Main(String[] args)
     {
-        Console.WriteLine("Welcome To address book");
-        Console.WriteLine("1.Add contact Details\n2.Edit Contact Details");
+        Console.WriteLine("Welcome To the Program\n");
+        Console.WriteLine("1.Serialization in Json\n2.Deserialization in Json");
         Serialization serializeDeserialize = new Serialization();
 
         bool check = true;
         while (check)
         {
-            Console.WriteLine("Enter Above option");
+            Console.WriteLine("\nEnter Above option");
             int Option = Convert.ToInt32(Console.ReadLine());
 
             switch (Option)
